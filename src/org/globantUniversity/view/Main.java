@@ -1,9 +1,13 @@
 package org.globantUniversity.view;
 
+import org.globantUniversity.data.University;
+import org.globantUniversity.persistence.DataInitializer;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        University globantUniversity = DataInitializer.loadUniversity();
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Welcome to the university of the future  - GLOBANT UNIVERSITY!");
@@ -20,7 +24,7 @@ public class Main {
 
             switch (option){
                 case 1:
-                    universityMenu();
+                    universityMenu(globantUniversity);
                     break;
                 case 2:
                     studentMenu();
@@ -37,13 +41,13 @@ public class Main {
 
         }while (option != 4);
     }
-    public static void universityMenu(){
+    public static void universityMenu(University currentUniversity){
         Scanner sc= new Scanner(System.in);
 
         int option;
 
         do{
-            System.out.println("*** Please choose an option ***" +
+            System.out.println("*** Pleas1e choose an option ***" +
                     "\n1. Add new Student" +
                     "\n2. Subject Menu" +
                     "\n3. Display Teacher List" +
@@ -69,7 +73,8 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("**********  Teacher List  *************");
-                    System.out.printf("|%20s|%20s|%20s|%20s|%20s|%20s|%n", "ID", "FULL NAME", "USER", "ACCOUNT NUMBER", "OPENING DATE", "BALANCE");
+                    System.out.printf("|%20s|%20s|%20s|%20s|%n", "ID", "ID CARD", "NAME", "TOTAL SALARY");
+                    displayTeacherList(currentUniversity);
 
                 case 4:
                     System.out.println("This is the previous menu !!");
@@ -131,6 +136,37 @@ public class Main {
     }
     public static void teacherMenu(){
         System.out.println("This is the Teacher Menu");
+    }
+
+    public static void displayTeacherList(University university){
+        if (university.getTeacherAmount()==0){
+            System.out.println("Teacher list is empty");
+        }else{
+            for (int i = 0; i<university.getTeacherAmount(); i++){
+                System.out.println(university.getTeacherByIndex(i));
+            }
+        }
+    }
+
+    public static void displayStudentList(University university){
+        if (university.getStudentsAmount()==0){
+            System.out.println("Student list is empty");
+        }else{
+            for (int i = 0; i<university.getStudentsAmount(); i++){
+                System.out.println(university.getStudentByIndex(i));
+            }
+        }
+
+    }
+
+    public static void displaySubjectList(University university){
+        if (university.getSubjectAmount()==0){
+            System.out.println("Subject list is empty");
+        }else{
+            for (int i = 0; i<university.getSubjectAmount(); i++){
+                System.out.println(university.getSubjectByIndex(i));
+            }
+        }
     }
 }
 

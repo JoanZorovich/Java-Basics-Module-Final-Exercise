@@ -3,38 +3,22 @@ package org.globantUniversity.data;
 public class Student {
     private String name;
     private int age;
+    private int identityCard;
     private int id;
-    static int counter;
+    static int counter = 1;
 
-    public Student(String name, int age, int id) {
+    public Student(String name, int age, int identityCard) {
         this.name = name;
         this.age = age;
-        this.id = id;
+        this.identityCard=identityCard;
+        this.id = counter;
         counter ++;
     }
 
-    public String getName() {
-        return name;
-    }
+    @Override
+    public String toString() {
+        return String.format("|%20d|%20d|%20s|%20d|",id,identityCard,name,age);
 
-    public int getAge() {
-        return age;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
 

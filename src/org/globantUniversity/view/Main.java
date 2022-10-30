@@ -1,5 +1,7 @@
 package org.globantUniversity.view;
 
+import org.globantUniversity.data.Student;
+import org.globantUniversity.data.Subject;
 import org.globantUniversity.data.University;
 import org.globantUniversity.persistence.DataInitializer;
 
@@ -57,15 +59,16 @@ public class Main {
             switch (option){
                 case 1:
                     System.out.println("*** Please enter the following user information *** ");
-                    System.out.println("Student ID : ");
-                    int userID = sc.nextInt();
+                    System.out.println("Student ID card : ");
+                    int identityCard = sc.nextInt();
                     System.out.println("Student full name : ");
-                    String name = sc.next();
-                    System.out.println("Student: ");
-                    String userName = sc.next();
-                    System.out.println("Temporal password : ");
-                    String password = sc.next();
-
+                    String name = sc.nextLine();
+                    System.out.println("Student age: ");
+                    int age = sc.nextInt();
+                    System.out.println("Subject name to add : ");
+                    String subjectName = sc.nextLine();
+                    Student currentStudent = currentUniversity.registerStudent(name,age,identityCard);
+                    currentUniversity.addStudentToSubject(currentStudent,subjectName);
                     break;
                 case 2:
                     System.out.println("*** Subject Menu *** ");
@@ -75,7 +78,7 @@ public class Main {
                     System.out.println("**********  Teacher List  *************");
                     System.out.printf("|%20s|%20s|%20s|%20s|%n", "ID", "ID CARD", "NAME", "TOTAL SALARY");
                     displayTeacherList(currentUniversity);
-
+                    break;
                 case 4:
                     System.out.println("This is the previous menu !!");
                     break;

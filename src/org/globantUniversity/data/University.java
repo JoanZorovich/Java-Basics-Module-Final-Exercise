@@ -19,10 +19,9 @@ public class University {
           return student;
      }
 
-     public void addStudentToSubject(Student student, String subjectName){
-          Subject currentSubject = searchASubject(subjectName);
-          currentSubject.setRegisteredStudentsList(student);
-          student.setStudentSubjectsList(currentSubject);
+     public void addStudentToSubject(Student student, Subject subject){
+          subject.setRegisteredStudentsList(student);
+          student.setStudentSubjectsList(subject);
      }
 
      public Subject searchASubject(String subjectName){
@@ -33,6 +32,15 @@ public class University {
                }
           }
           return locatedSubject;
+     }
+     public Student searchAStudent(int identityCard){
+          Student locatedStudent=new Student();
+          for (Student tryStudent : this.studentList){
+               if(tryStudent.isARegisteredStudent(identityCard)){
+                    locatedStudent = tryStudent;
+               }
+          }
+          return locatedStudent;
      }
 
      public void registerTeacher (Teacher teacher){

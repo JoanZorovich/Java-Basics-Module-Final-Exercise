@@ -9,6 +9,7 @@ public class Student {
     private int identityCard;
     private ArrayList<Subject> studentSubjectsList;
     static int counter = 1;
+    public Student(){};
 
     public Student(String name, int age, int identityCard) {
         this.name = name;
@@ -53,6 +54,14 @@ public class Student {
 
     public void setStudentSubjectsList(Subject subject) {
         this.studentSubjectsList.add(subject);
+    }
+
+    public boolean isARegisteredStudent(int indentityCard){
+        boolean isRegisteredStudent = false;
+        if(this.identityCard == indentityCard){
+            isRegisteredStudent = true;
+        }
+        return isRegisteredStudent;
     }
 
     @Override

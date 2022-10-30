@@ -49,8 +49,8 @@ public class Main {
         int option;
 
         do{
-            System.out.println("*** Pleas1e choose an option ***" +
-                    "\n1. Add new Student" +
+            System.out.println("*** Please choose an option ***" +
+                    "\n1. Register a new Student" +
                     "\n2. Subject Menu" +
                     "\n3. Display Teacher List" +
                     "\n4. Back to previous menu");
@@ -61,15 +61,10 @@ public class Main {
                     System.out.println("*** Please enter the following user information *** ");
                     System.out.println("Student ID card : ");
                     int identityCard = sc.nextInt();
-                    System.out.println("Student full name : ");
-                    String name = sc.nextLine();
-                    System.out.println("Student age: ");
-                    int age = sc.nextInt();
-                    System.out.println("Subject name to add : ");
-                    String subjectName = sc.nextLine();
-                    Student currentStudent = currentUniversity.registerStudent(name,age,identityCard);
-                    currentUniversity.addStudentToSubject(currentStudent,subjectName);
+                    registerAStudent(currentUniversity,identityCard);
+
                     break;
+
                 case 2:
                     System.out.println("*** Subject Menu *** ");
                         subjectMenu();
@@ -106,7 +101,7 @@ public class Main {
                 case 1:
                     System.out.println("*** Please enter the following user information *** ");
                     System.out.println("Student ID : ");
-                    int userID = sc.nextInt();
+                    int studentID = sc.nextInt();
                     System.out.println("Student full name : ");
                     String name = sc.next();
                     System.out.println("Student: ");
@@ -139,6 +134,36 @@ public class Main {
     }
     public static void teacherMenu(){
         System.out.println("This is the Teacher Menu");
+    }
+
+    public static void registerAStudent(University university, int identityCard){
+        Student student = university.searchAStudent(identityCard);
+        if(student.getName() != null){
+            System.out.println("This user is already registered");
+        }else {
+            Scanner sc= new Scanner(System.in);
+            System.out.println("Student full name : ");
+            String name = sc.nextLine();
+            System.out.println("Student age: ");
+            int age = sc.nextInt();
+            Student currentStudent = university.registerStudent(name,age,identityCard);
+            System.out.println(currentStudent.getName() + "has successfully enrolled in the University," +
+                    "\nNow, please register the student in a subject");
+            sc=new Scanner(System.in);
+            System.out.println("Enter the subject name : ");
+            String subjectName = sc.nextLine();
+            Subject currentSubject = university.searchASubject(subjectName);
+
+            if(currentSubject.getSubjectName()==null){
+                System.out.println("no subject with that name was found"+
+                        "\nPlease verify the subject name and try again");
+            }else {
+                university.addStudentToSubject(currentStudent,currentSubject);
+                System.out.println(currentStudent.getName() + " has successfully enrolled in the University" +
+                        "\nand registered for " + subjectName);
+            }
+        }
+        displayStudentList(university);
     }
 
     public static void displayTeacherList(University university){

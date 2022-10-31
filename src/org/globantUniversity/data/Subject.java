@@ -30,9 +30,16 @@ public class Subject {
         return subjectName;
     }
 
+
     public int getClassroom() {
         return classroom;
     }
+
+    public ArrayList<Student> getRegisteredStudentsList() {
+        return registeredStudentsList;
+    }
+
+
 
     public void setRegisteredStudentsList(Student student) {
        this.registeredStudentsList.add(student);
@@ -50,14 +57,16 @@ public class Subject {
         return isRegisteredSubject;
     }
 
-    @Override
-    public String toString() {
+    public String getDetailedInformation(){
         return
                 "************* Subject Information ************ " +
-                "\n- ID: " + id +
-                "\n- SubjectName: " + subjectName +
-                "\n- Classroom: " + classroom + "\n- Teacher: " + subjectTeacher.getName() +
-                "\n- registeredStudentsList=" + registeredStudentsList +
-                "\n**************************************";
+                        "\n- ID: " + id +
+                        "\n- SubjectName: " + subjectName +
+                        "\n- Classroom: " + classroom + "\n- Teacher: " + subjectTeacher.getName() +
+                        "\n- Registered Students: " + registeredStudentsList;
     }
-}
+
+    @Override
+    public String toString() {return String.format("|%20d|%20s|%20s|",id,subjectName,classroom);}
+    }
+

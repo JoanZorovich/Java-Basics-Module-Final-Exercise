@@ -13,6 +13,18 @@ public class University {
           this.subjectList = new ArrayList<>();
      }
 
+     public Student getStudentById(int index) {
+          return this.studentList.get(index);
+     }
+
+     public Teacher getTeacherById(int index) {
+          return this.teacherList.get(index);
+     }
+
+     public Subject getSubjectById(int index) {
+          return this.subjectList.get(index);
+     }
+
      public Student registerStudent (String name, int age, int identityCard){
           Student student = new Student(name,age,identityCard);
           studentList.add(student);
@@ -88,7 +100,12 @@ public class University {
      }
 
      public String getSubjectDetailedInformation(Subject subject){
-          return subject.toString();
+          return subject.getDetailedInformation();
+     }
+
+
+     public String getStudentSubjects (Student student){
+          return student.getStudentSubjectsList();
      }
 
 }

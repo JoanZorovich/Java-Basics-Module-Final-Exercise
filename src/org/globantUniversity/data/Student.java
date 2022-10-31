@@ -3,7 +3,6 @@ package org.globantUniversity.data;
 import java.util.ArrayList;
 
 public class Student {
-    private int id;
     private String name;
     private int age;
     private int identityCard;
@@ -15,13 +14,7 @@ public class Student {
         this.name = name;
         this.age = age;
         this.identityCard=identityCard;
-        this.id = counter;
         this.studentSubjectsList = new ArrayList<>();
-        counter ++;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {
@@ -36,8 +29,8 @@ public class Student {
         return identityCard;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getStudentSubjectsList() {
+        return studentSubjectsList.toString();
     }
 
     public void setName(String name) {
@@ -56,9 +49,9 @@ public class Student {
         this.studentSubjectsList.add(subject);
     }
 
-    public boolean isARegisteredStudent(int indentityCard){
+    public boolean isARegisteredStudent(int identityCard){
         boolean isRegisteredStudent = false;
-        if(this.identityCard == indentityCard){
+        if(this.identityCard == identityCard){
             isRegisteredStudent = true;
         }
         return isRegisteredStudent;
@@ -66,7 +59,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return  "\n- ID: " + id + " Name: " + name;
+        return String.format("|%20s|%20s|%20s|",identityCard,name,age);
     }
 }
 

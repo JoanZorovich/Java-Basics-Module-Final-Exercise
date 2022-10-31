@@ -19,6 +19,12 @@ public class University {
           return student;
      }
 
+     public void createSubject (String subjectName, int classroom, Teacher subjectTeacher, Student student){
+          Subject subject = new Subject(subjectName, classroom, subjectTeacher);
+          subject.setRegisteredStudentsList(student);
+          subjectList.add(subject);
+     }
+
      public void addStudentToSubject(Student student, Subject subject){
           subject.setRegisteredStudentsList(student);
           student.setStudentSubjectsList(subject);
@@ -43,12 +49,20 @@ public class University {
           return locatedStudent;
      }
 
+     public Teacher searchATeacher(int identityCard){
+          Teacher locatedTeacher = new Teacher();
+          for (Teacher tryTeacher : this.teacherList){
+               if(tryTeacher.isARegisteredTeacher(identityCard)){
+                    locatedTeacher = tryTeacher;
+               }
+          }
+          return locatedTeacher;
+     }
+
      public void registerTeacher (Teacher teacher){
           teacherList.add(teacher);
      }
-     public void registerSubject (Subject subject){
-          subjectList.add(subject);
-     }
+
 
      public int getTeacherAmount(){
           return teacherList.size();
@@ -67,9 +81,8 @@ public class University {
 
 
      public int getSubjectAmount(){
-          return studentList.size();
+          return subjectList.size();
      }
-
      public Subject getSubjectByIndex(int index) {
           return subjectList.get(index);
      }

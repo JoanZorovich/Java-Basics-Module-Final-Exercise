@@ -9,15 +9,15 @@ public class Subject {
     private ArrayList<Student> registeredStudentsList;
     private Teacher subjectTeacher;
 
-    private static int counter = 0;
+    private static int counter = 1111;
 
     public Subject(){}
 
-    public Subject(String subjectName, int classroom, ArrayList<Student> studentsList, Teacher subjectTeacher) {
+    public Subject(String subjectName, int classroom, Teacher subjectTeacher) {
         this.id= counter;
         this.subjectName = subjectName;
         this.classroom = classroom;
-        this.registeredStudentsList = studentsList;
+        this.registeredStudentsList = new ArrayList<>();
         this.subjectTeacher = subjectTeacher;
         counter ++;
     }
@@ -48,5 +48,10 @@ public class Subject {
             isRegisteredSubject = true;
         }
         return isRegisteredSubject;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("|%20d|%20s|%20d|%20s|%20s|",id,subjectName,classroom,registeredStudentsList,subjectTeacher.getName());
     }
 }

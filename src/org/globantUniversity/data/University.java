@@ -13,15 +13,56 @@ public class University {
           this.subjectList = new ArrayList<>();
      }
 
-     public void registerStudent (Student student){
+     public Student registerStudent (String name, int age, int identityCard){
+          Student student = new Student(name,age,identityCard);
           studentList.add(student);
+          return student;
      }
+
+     public void createSubject (String subjectName, int classroom, Teacher subjectTeacher, Student student){
+          Subject subject = new Subject(subjectName, classroom, subjectTeacher);
+          subject.setRegisteredStudentsList(student);
+          subjectList.add(subject);
+     }
+
+     public void addStudentToSubject(Student student, Subject subject){
+          subject.setRegisteredStudentsList(student);
+          student.setStudentSubjectsList(subject);
+     }
+
+     public Subject searchASubject(int subjectID){
+          Subject locatedSubject = new Subject();
+          for (Subject trySubject : this.subjectList){
+               if(trySubject.isARegisteredSubject(subjectID)){
+                    locatedSubject = trySubject;
+               }
+          }
+          return locatedSubject;
+     }
+     public Student searchAStudent(int identityCard){
+          Student locatedStudent=new Student();
+          for (Student tryStudent : this.studentList){
+               if(tryStudent.isARegisteredStudent(identityCard)){
+                    locatedStudent = tryStudent;
+               }
+          }
+          return locatedStudent;
+     }
+
+     public Teacher searchATeacher(int identityCard){
+          Teacher locatedTeacher = new Teacher();
+          for (Teacher tryTeacher : this.teacherList){
+               if(tryTeacher.isARegisteredTeacher(identityCard)){
+                    locatedTeacher = tryTeacher;
+               }
+          }
+          return locatedTeacher;
+     }
+
      public void registerTeacher (Teacher teacher){
           teacherList.add(teacher);
      }
-     public void registerSubject (Subject subject){
-          subjectList.add(subject);
-     }
+
 
      public int getTeacherAmount(){
           return teacherList.size();
@@ -40,11 +81,14 @@ public class University {
 
 
      public int getSubjectAmount(){
-          return studentList.size();
+          return subjectList.size();
      }
-
      public Subject getSubjectByIndex(int index) {
           return subjectList.get(index);
+     }
+
+     public String getSubjectDetailedInformation(Subject subject){
+          return subject.toString();
      }
 
 }

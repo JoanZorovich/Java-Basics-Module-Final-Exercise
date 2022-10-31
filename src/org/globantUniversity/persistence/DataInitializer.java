@@ -15,19 +15,12 @@ public class DataInitializer {
         return globantUniversity;
     }
     public static void loadStudentsIntoUniversity(University university){
-        Student student1= new Student("Ines Perado", 20, 1010179026);
-        Student student2= new Student("Leo Diario", 18, 1010179027);
-        Student student3= new Student("Elvis Teck", 19, 1010179028);
-        Student student4= new Student("Helen Chufle", 23, 1010179029);
-        Student student5= new Student("Aitor Menta", 25, 1010179030);
-        Student student6= new Student("Elena Nito", 21, 1010179031);
-
-        university.registerStudent(student1);
-        university.registerStudent(student2);
-        university.registerStudent(student3);
-        university.registerStudent(student4);
-        university.registerStudent(student5);
-        university.registerStudent(student6);
+        university.registerStudent("Ines Perado", 20, 1010179026);
+        university.registerStudent("Leo Diario", 18, 1010179027);
+        university.registerStudent("Elvis Teck", 19, 1010179028);
+        university.registerStudent("Helen Chufle", 23, 1010179029);
+        university.registerStudent("Aitor Menta", 25, 1010179030);
+        university.registerStudent("Elena Nito", 21, 1010179031);
 
     }
     public static void loadTeachersIntoUniversity(University university){
@@ -40,18 +33,17 @@ public class DataInitializer {
 
     }
     public static void loadSubjectInToUniversity(University university){
-        ArrayList<Student> subject1Students = new ArrayList<>();
-        Teacher teacher2 = new PartTimeTeacher(1010178021, "Felipe Jimenez", 20);
-        Subject subject1 = new Subject("math 1", 12020, subject1Students, teacher2);
-        Subject subject2 = new Subject("math 2", 12021, subject1Students, teacher2);
-        Subject subject3 = new Subject("math 3", 12022, subject1Students, teacher2);
-        Subject subject4 = new Subject("math 4", 12023, subject1Students, teacher2);
+        Student student1 = new Student("Troy McClure",20,10102635);
+        Student student2 = new Student("Milhouse Van Housen",22,10102636);
+        Student student3 = new Student("Nelson Muntz",40,10102637);
 
-        university.registerSubject(subject1);
-        university.registerSubject(subject2);
-        university.registerSubject(subject3);
-        university.registerSubject(subject4);
+        Teacher teacher1 = new FullTimeTeacher(1010178085, "Elvis Teck", 3);
+        Teacher teacher2 = new PartTimeTeacher(1010178070, "Pepito Perez", 30);
 
+        university.createSubject("math 1", 101122, teacher1,student1);
+        university.createSubject("math 2", 101122, teacher2,student2);
+        university.createSubject("math 3", 101122, teacher1,student3);
+        university.createSubject("math 4", 101122, teacher2,student2);
     }
 
 }

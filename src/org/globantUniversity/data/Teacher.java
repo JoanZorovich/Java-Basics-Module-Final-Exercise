@@ -13,6 +13,8 @@ public class Teacher {
     protected double totalSalary;
     private static int counter = 0;
 
+
+    public Teacher(){};
     public Teacher(int identityCard, String name) {
         this.id = counter;
         this.identityCard = identityCard;
@@ -51,6 +53,14 @@ public class Teacher {
 
     public void setTotalSalary(double totalSalary) {
         this.totalSalary = totalSalary;
+    }
+
+    public boolean isARegisteredTeacher(int indentityCard){
+        boolean isRegisteredTeacher = false;
+        if(this.identityCard == indentityCard){
+            isRegisteredTeacher = true;
+        }
+        return isRegisteredTeacher;
     }
 
     @Override

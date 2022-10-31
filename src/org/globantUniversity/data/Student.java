@@ -66,8 +66,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return String.format("|%20d|%20d|%20s|%20d|",id,identityCard,name,age);
-
+        return  "\n- ID: " + id + " Name: " + name;
     }
 }
 

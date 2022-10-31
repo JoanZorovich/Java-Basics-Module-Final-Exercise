@@ -33,18 +33,17 @@ public class DataInitializer {
 
     }
     public static void loadSubjectInToUniversity(University university){
-        ArrayList<Student> students = new ArrayList<>();
-        Teacher teacher2 = new PartTimeTeacher(1010178021, "Felipe Jimenez", 20);
-        Subject subject1 = new Subject("math 1", 12020, students, teacher2);
-        Subject subject2 = new Subject("math 2", 12021, students, teacher2);
-        Subject subject3 = new Subject("math 3", 12022, students, teacher2);
-        Subject subject4 = new Subject("math 4", 12023, students, teacher2);
+        Student student1 = new Student("Troy McClure",20,10102635);
+        Student student2 = new Student("Milhouse Van Housen",22,10102636);
+        Student student3 = new Student("Nelson Muntz",40,10102637);
 
-        university.registerSubject(subject1);
-        university.registerSubject(subject2);
-        university.registerSubject(subject3);
-        university.registerSubject(subject4);
+        Teacher teacher1 = new FullTimeTeacher(1010178085, "Elvis Teck", 3);
+        Teacher teacher2 = new PartTimeTeacher(1010178070, "Pepito Perez", 30);
 
+        university.createSubject("math 1", 101122, teacher1,student1);
+        university.createSubject("math 2", 101122, teacher2,student2);
+        university.createSubject("math 3", 101122, teacher1,student3);
+        university.createSubject("math 4", 101122, teacher2,student2);
     }
 
 }

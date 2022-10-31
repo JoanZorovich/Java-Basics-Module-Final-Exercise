@@ -30,10 +30,10 @@ public class University {
           student.setStudentSubjectsList(subject);
      }
 
-     public Subject searchASubject(String subjectName){
+     public Subject searchASubject(int subjectID){
           Subject locatedSubject = new Subject();
           for (Subject trySubject : this.subjectList){
-               if(trySubject.isARegisteredSubject(subjectName)){
+               if(trySubject.isARegisteredSubject(subjectID)){
                     locatedSubject = trySubject;
                }
           }
@@ -85,6 +85,10 @@ public class University {
      }
      public Subject getSubjectByIndex(int index) {
           return subjectList.get(index);
+     }
+
+     public String getSubjectDetailedInformation(Subject subject){
+          return subject.toString();
      }
 
 }

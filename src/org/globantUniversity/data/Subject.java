@@ -42,9 +42,9 @@ public class Subject {
         return subjectTeacher;
     }
 
-    public boolean isARegisteredSubject(String subjectName){
+    public boolean isARegisteredSubject(int subjectID){
         boolean isRegisteredSubject = false;
-        if(this.subjectName.equals(subjectName)){
+        if(this.id == subjectID){
             isRegisteredSubject = true;
         }
         return isRegisteredSubject;
@@ -52,6 +52,12 @@ public class Subject {
 
     @Override
     public String toString() {
-        return String.format("|%20d|%20s|%20d|%20s|%20s|",id,subjectName,classroom,registeredStudentsList,subjectTeacher.getName());
+        return
+                "************* Subject Information ************ " +
+                "\n- ID: " + id +
+                "\n- SubjectName: " + subjectName +
+                "\n- Classroom: " + classroom + "\n- Teacher: " + subjectTeacher.getName() +
+                "\n- registeredStudentsList=" + registeredStudentsList +
+                "\n**************************************";
     }
 }

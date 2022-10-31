@@ -80,7 +80,7 @@ public class Main {
                     if(currentTeacher.getName()== null){
                         System.out.println("Please validate the teacher ID card and try the registration again");
                     }else{
-                        System.out.println("Add a Student");
+                        System.out.println("Add a Student :");
                         System.out.println("Type the student ID card :");
                         int studentIdCard = sc.nextInt();
                         Student currentStudent = currentUniversity.searchAStudent(studentIdCard);
@@ -88,20 +88,29 @@ public class Main {
                             System.out.println("Please validate the Student ID card and try the registration again");
                         }else{
                             currentUniversity.createSubject(subjectName,classroom,currentTeacher,currentStudent);
+                            System.out.println(subjectName +
+                                    " has been successfully created in the University!!!");
                         }
                     }
 
                     break;
                 case 2:
-                    System.out.println("**********  Subject List  *************");
-                    System.out.printf("|%20s|%20s|%20s|%20s|%20s|%n", "ID", "NAME", "CLASSROOM", "STUDENTS", "TEACHER");
+                    System.out.println("********** Subject List *************");
+                    System.out.printf("|%20s|%20s|%20s|%n", "ID", "NAME", "CLASSROOM");
                     displaySubjectList(currentUniversity);
 
                     break;
                 case 3:
-                    System.out.println("**********  Subject List detailed *************");
-                    System.out.printf("|%20s|%20s|%20s|%20s|%20s|%n", "ID", "NAME", "CLASSROOM", "STUDENTS", "TEACHER");
-                    displaySubjectList(currentUniversity);
+                    System.out.println("*** Please enter the following subject information *** ");
+                    System.out.println("Subject ID :");
+                    int subjectID = sc.nextInt();
+                    Subject currentSubject = currentUniversity.searchASubject(subjectID);
+                    if (currentSubject.getSubjectName()==null){
+                        System.out.println("Please validate the Subject ID and try again");
+                    }else{
+                        System.out.println(currentUniversity.getSubjectDetailedInformation(currentSubject));
+
+                    }
                     break;
 
                 case 4:
@@ -136,7 +145,10 @@ public class Main {
                     break;
 
                 case 2:
+                    System.out.println("********** Student List *************");
+                    System.out.printf("|%20s|%20s|%20s|%20s|%n", "ID", "NAME", "IDENTITY CARD", "AGE");
                     displayStudentList(currentUniversity);
+                    System.out.println("*************************************");
                     break;
 
                 case 3:
@@ -186,17 +198,16 @@ public class Main {
 
 
 
-    public static void createASubject(University university, Subject subject){
-
-    }
-
 
     public static void displaySubjectList(University university){
         if (university.getSubjectAmount()==0){
             System.out.println("Subject list is empty");
         }else{
             for (int i = 0; i<university.getSubjectAmount(); i++){
-                System.out.println(university.getSubjectByIndex(i));
+
+                Subject currentSubject = university.getSubjectByIndex(i);
+                System.out.printf("|%20s|%20s|%20s|%n", currentSubject.getId(),
+                        currentSubject.getSubjectName(), currentSubject.getClassroom());
             }
         }
     }
@@ -217,9 +228,9 @@ public class Main {
             System.out.println(currentStudent.getName() + "has successfully enrolled in the University," +
                     "\nNow, please register the student in a subject");
             sc=new Scanner(System.in);
-            System.out.println("Enter the subject name : ");
-            String subjectName = sc.nextLine();
-            Subject currentSubject = university.searchASubject(subjectName);
+            System.out.println("Enter the subject ID");
+            int subjectID = sc.nextInt();
+            Subject currentSubject = university.searchASubject(subjectID);
 
             if(currentSubject.getSubjectName()==null){
                 System.out.println("no subject with that name was found"+
@@ -227,7 +238,7 @@ public class Main {
             }else {
                 university.addStudentToSubject(currentStudent,currentSubject);
                 System.out.println(currentStudent.getName() + " has successfully enrolled in the University" +
-                        "\nand registered for " + subjectName);
+                        "\nand registered for " + currentSubject.getSubjectName());
             }
         }
         displayStudentList(university);
@@ -237,7 +248,9 @@ public class Main {
             System.out.println("Student list is empty");
         }else{
             for (int i = 0; i<university.getStudentsAmount(); i++){
-                System.out.println(university.getStudentByIndex(i));
+                Student currentStudent =university.getStudentByIndex(i);
+                System.out.printf("|%20s|%20s|%20s|%20s|%n", currentStudent.getId(),
+                        currentStudent.getName(),currentStudent.getIdentityCard(),currentStudent.getAge() );
             }
         }
 
@@ -254,16 +267,6 @@ public class Main {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
 
 }
 

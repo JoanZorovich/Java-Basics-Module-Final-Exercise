@@ -13,21 +13,37 @@ public class University {
           this.subjectList = new ArrayList<>();
      }
 
+     public Student getStudentById(int index) {
+          return this.studentList.get(index);
+     }
+
+     public Teacher getTeacherById(int index) {
+          return this.teacherList.get(index);
+     }
+
+     public Subject getSubjectById(int index) {
+          return this.subjectList.get(index);
+     }
+
      public Student registerStudent (String name, int age, int identityCard){
           Student student = new Student(name,age,identityCard);
-          studentList.add(student);
+          this.studentList.add(student);
           return student;
      }
 
-     public void createSubject (String subjectName, int classroom, Teacher subjectTeacher, Student student){
+     public Subject createSubject (String subjectName, int classroom, Teacher subjectTeacher){
           Subject subject = new Subject(subjectName, classroom, subjectTeacher);
-          subject.setRegisteredStudentsList(student);
-          subjectList.add(subject);
+          this.subjectList.add(subject);
+          return subject;
      }
 
      public void addStudentToSubject(Student student, Subject subject){
           subject.setRegisteredStudentsList(student);
           student.setStudentSubjectsList(subject);
+     }
+
+     public void registerTeacher (Teacher teacher){
+          teacherList.add(teacher);
      }
 
      public Subject searchASubject(int subjectID){
@@ -59,36 +75,54 @@ public class University {
           return locatedTeacher;
      }
 
-     public void registerTeacher (Teacher teacher){
-          teacherList.add(teacher);
-     }
-
 
      public int getTeacherAmount(){
-          return teacherList.size();
+          return this.teacherList.size();
      }
      public Teacher getTeacherByIndex(int index) {
-          return teacherList.get(index);
+          return this.teacherList.get(index);
      }
-
 
      public int getStudentsAmount(){
-          return studentList.size();
+          return this.studentList.size();
      }
      public Student getStudentByIndex(int index) {
-          return studentList.get(index);
+          return this.studentList.get(index);
      }
 
 
      public int getSubjectAmount(){
-          return subjectList.size();
+          return this.subjectList.size();
      }
      public Subject getSubjectByIndex(int index) {
-          return subjectList.get(index);
+          return this.subjectList.get(index);
      }
 
      public String getSubjectDetailedInformation(Subject subject){
-          return subject.toString();
+          return subject.getInformationOfSubject();
+     }
+
+     public String getStudentDetailedInformation(Student student){
+          return student.getInformationOfStudent();
+     }
+
+
+
+
+     public Subject getStudentSubjectsById(Student student, int index){
+          return student.getStudentSubjectsListById(index);
+     }
+
+     public int getStudentSubjectsAmount(Student student){
+          return student.getStudentSubjectsListAmount();
+     }
+
+     public Student getRegisteredStudentsById(Subject subject, int index){
+          return subject.getRegisteredStudentsListById(index);
+     }
+
+     public int getRegisteredStudentsAmount(Subject subject){
+          return subject.getRegisteredStudentsListAmount();
      }
 
 }

@@ -3,7 +3,6 @@ package org.globantUniversity.data;
 import java.util.ArrayList;
 
 public class Student {
-    private int id;
     private String name;
     private int age;
     private int identityCard;
@@ -15,58 +14,44 @@ public class Student {
         this.name = name;
         this.age = age;
         this.identityCard=identityCard;
-        this.id = counter;
         this.studentSubjectsList = new ArrayList<>();
-        counter ++;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
+    }
+    public Subject getStudentSubjectsListById(int index) {
+        return this.studentSubjectsList.get(index);
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public int getIdentityCard() {
-        return identityCard;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setIdentityCard(int identityCard) {
-        this.identityCard = identityCard;
+    public int getStudentSubjectsListAmount(){
+        return this.studentSubjectsList.size();
     }
 
     public void setStudentSubjectsList(Subject subject) {
         this.studentSubjectsList.add(subject);
     }
 
-    public boolean isARegisteredStudent(int indentityCard){
+    public boolean isARegisteredStudent(int identityCard){
         boolean isRegisteredStudent = false;
-        if(this.identityCard == indentityCard){
+        if(this.identityCard == identityCard){
             isRegisteredStudent = true;
         }
         return isRegisteredStudent;
     }
 
+    public String getInformationOfStudent(){
+        return
+                "************* Subject Information ************ " +
+                        "\n- ID: " + this.identityCard +
+                        "\n- Name: " + this.name +
+                        "\n- Age: " + this.age +
+                        "\n*** These are the subjects in which the student is enrolled ***";
+    }
+
     @Override
     public String toString() {
-        return  "\n- ID: " + id + " Name: " + name;
+        return String.format("|%20s|%20s|%20s|",identityCard,name,age);
     }
 }
 

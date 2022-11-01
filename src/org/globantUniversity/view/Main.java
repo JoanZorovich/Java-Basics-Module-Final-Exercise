@@ -52,6 +52,11 @@ public class Main {
         }while (option != 4);
     }
 
+    /**
+     * this method manages the entire menu related to the subject and orchestrates all
+     * the information that is entered and displayed
+     * @param currentUniversity
+     */
     public static void subjectMenu(University currentUniversity){
         Scanner sc= new Scanner(System.in);
 
@@ -128,6 +133,11 @@ public class Main {
         }while (option != 4);
     }
 
+    /**
+     * this method manages the entire menu related to the student and orchestrates all
+     * the information that is entered and displayed
+     * @param currentUniversity
+     */
     public static void studentMenu(University currentUniversity){
         Scanner sc= new Scanner(System.in);
 
@@ -180,6 +190,11 @@ public class Main {
         }while (option != 4);
     }
 
+    /**
+     * this method manages the entire menu related to the teacher and orchestrates all
+     * the information that is entered and displayed
+     * @param currentUniversity
+     */
     public static void teacherMenu(University currentUniversity){
         Scanner sc= new Scanner(System.in);
 
@@ -208,7 +223,10 @@ public class Main {
     }
 
 
-
+    /**
+     * Display a list with all the information related to the subject
+     * @param university
+     */
 
     public static void displaySubjectList(University university){
         if (university.getSubjectAmount()==0){
@@ -220,7 +238,12 @@ public class Main {
         }
     }
 
-
+    /**
+     *allows a student to register, carrying out identity validations.
+     * After the student registers, they must be enrolled in a subject
+     * @param university
+     * @param identityCard
+     */
 
     public static void registerAStudent(University university, int identityCard){
         Student student = university.searchAStudent(identityCard);
@@ -241,7 +264,7 @@ public class Main {
             Subject currentSubject = university.searchASubject(subjectID);
 
             if(currentSubject.getSubjectName()==null){
-                System.out.println("No subject with that name was found"+
+                System.out.println("No subject with that ID was found"+
                         "\nPlease verify the subject name and try again");
             }else {
                 university.addStudentToSubject(currentStudent,currentSubject);
@@ -250,6 +273,11 @@ public class Main {
             }
         }
     }
+
+    /**
+     * Display a list with all the information related to the student
+     * @param university
+     */
     public static void displayStudentList(University university){
         if (university.getStudentsAmount()==0){
             System.out.println("Student list is empty");
@@ -260,7 +288,10 @@ public class Main {
         }
     }
 
-
+    /**
+     * Display a list with all the information related to the student
+     * @param university
+     */
     public static void displayTeacherList(University university){
         if (university.getTeacherAmount()==0){
             System.out.println("Teacher list is empty");

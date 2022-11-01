@@ -2,6 +2,10 @@ package org.globantUniversity.data;
 
 import java.util.ArrayList;
 
+/**
+ * create and consult information of a teacher
+ */
+
 public class Teacher {
 
     protected int identityCard;
@@ -10,7 +14,6 @@ public class Teacher {
 
     protected static double baseSalary = 2000;
     protected double totalSalary;
-
 
 
     public Teacher(){};
@@ -26,7 +29,11 @@ public class Teacher {
         return name;
     }
 
-
+    /**
+     *Validate if a teacher has already been created
+     * @param identityCard input data from console
+     * @return true if the teacher is registered, false if not
+     */
     public boolean isARegisteredTeacher(int identityCard){
         boolean isRegisteredTeacher = false;
         if(this.identityCard == identityCard){

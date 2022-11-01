@@ -85,9 +85,11 @@ public class Main {
                         int studentIdCard = sc.nextInt();
                         Student currentStudent = currentUniversity.searchAStudent(studentIdCard);
                         if (currentStudent.getName()==null){
-                            System.out.println("Please validate the Student ID card and try the registration again");
+                            System.out.println("The student with ID: " + studentIdCard +
+                                    " is not enrolled in the university, please register him/her and try again");
                         }else{
-                            currentUniversity.createSubject(subjectName,classroom,currentTeacher,currentStudent);
+                            Subject currentSubject= currentUniversity.createSubject(subjectName,classroom,currentTeacher);
+                            currentUniversity.addStudentToSubject(currentStudent,currentSubject);
                             System.out.println(subjectName +
                                     " has been successfully created in the University!!!");
                         }
@@ -96,7 +98,7 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("********** Subject List *************");
-                    System.out.printf("|%20s|%20s|%20s|%n", "ID", "NAME", "CLASSROOM");
+                    System.out.printf("|%20s|%30s|%20s|%n", "ID", "NAME", "CLASSROOM");
                     displaySubjectList(currentUniversity);
 
                     break;
@@ -109,6 +111,9 @@ public class Main {
                         System.out.println("Please validate the Subject ID and try again");
                     }else{
                         System.out.println(currentUniversity.getSubjectDetailedInformation(currentSubject));
+                        System.out.printf("|%20s|%20s|%20s|%n", "ID", "NAME", "AGE");
+                        displayStudentsOfSubject(currentUniversity,currentSubject);
+                        System.out.println("*******************************************************");
 
                     }
                     break;
@@ -157,9 +162,12 @@ public class Main {
                     int idCard = sc.nextInt();
                     Student currentStudent = currentUniversity.searchAStudent(idCard);
                     if(currentStudent.getName()==null){
-                        System.out.println("Please verify the  identity car number and try again");
+                        System.out.println("Please verify the  identity card number and try again");
                     }else{
-                        System.out.println(currentUniversity.getStudentSubjects(currentStudent));
+                        System.out.println(currentUniversity.getStudentDetailedInformation(currentStudent));
+                        System.out.printf("|%20s|%30s|%20s|%n", "ID", "NAME", "CLASSROOM");
+                        displaySubjectsOfStudent(currentUniversity,currentStudent);
+                        System.out.println("*******************************************************");
                     }
                     break;
                 case 4:
@@ -179,30 +187,24 @@ public class Main {
 
         do{
             System.out.println("*** Please choose an option ***" +
-                    "\n1. Create a new teacher" +
-                    "\n2. Display teacher List" +
-                    "\n3. Display a specific teacher with detailed information" +
-                    "\n4. Back to previous menu");
+                    "\n1. Display teacher List" +
+                    "\n2. Back to previous menu");
             option= sc.nextInt();
 
             switch (option){
                 case 1:
-                    break;
-                case 2:
                     System.out.println("**********  Teacher List  *************");
                     System.out.printf("|%20s|%20s|%20s|%n", "ID", "NAME", "TOTAL SALARY");
                     displayTeacherList(currentUniversity);
                     break;
-                case 3:
-                    break;
-                case 4:
+                case 2:
                     System.out.println("This is the previous menu !!");
                     break;
                 default:
                     System.out.println("Please enter a right option");
             }
 
-        }while (option != 4);
+        }while (option != 2);
     }
 
 
@@ -239,7 +241,7 @@ public class Main {
             Subject currentSubject = university.searchASubject(subjectID);
 
             if(currentSubject.getSubjectName()==null){
-                System.out.println("no subject with that name was found"+
+                System.out.println("No subject with that name was found"+
                         "\nPlease verify the subject name and try again");
             }else {
                 university.addStudentToSubject(currentStudent,currentSubject);
@@ -269,5 +271,16 @@ public class Main {
         }
     }
 
+    public static void displaySubjectsOfStudent(University university, Student student){
+        for (int i=0; i<university.getStudentSubjectsAmount(student); i++){
+            System.out.println(university.getStudentSubjectsById(student,i));
+        }
+    }
+
+    public static void displayStudentsOfSubject(University university, Subject subject){
+        for (int i=0; i<university.getRegisteredStudentsAmount(subject); i++){
+            System.out.println(university.getRegisteredStudentsById(subject,i));
+        }
+    }
 }
 

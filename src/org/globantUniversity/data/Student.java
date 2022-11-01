@@ -18,31 +18,14 @@ public class Student {
     }
 
     public String getName() {
-        return name;
+        return this.name;
+    }
+    public Subject getStudentSubjectsListById(int index) {
+        return this.studentSubjectsList.get(index);
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public int getIdentityCard() {
-        return identityCard;
-    }
-
-    public String getStudentSubjectsList() {
-        return studentSubjectsList.toString();
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setIdentityCard(int identityCard) {
-        this.identityCard = identityCard;
+    public int getStudentSubjectsListAmount(){
+        return this.studentSubjectsList.size();
     }
 
     public void setStudentSubjectsList(Subject subject) {
@@ -55,6 +38,15 @@ public class Student {
             isRegisteredStudent = true;
         }
         return isRegisteredStudent;
+    }
+
+    public String getInformationOfStudent(){
+        return
+                "************* Subject Information ************ " +
+                        "\n- ID: " + this.identityCard +
+                        "\n- Name: " + this.name +
+                        "\n- Age: " + this.age +
+                        "\n*** These are the subjects in which the student is enrolled ***";
     }
 
     @Override

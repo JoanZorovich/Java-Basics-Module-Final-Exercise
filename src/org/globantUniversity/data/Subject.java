@@ -22,21 +22,16 @@ public class Subject {
         counter ++;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getSubjectName() {
-        return subjectName;
+        return this.subjectName;
     }
 
-
-    public int getClassroom() {
-        return classroom;
+    public Student getRegisteredStudentsListById(int index) {
+        return this.registeredStudentsList.get(index);
     }
 
-    public ArrayList<Student> getRegisteredStudentsList() {
-        return registeredStudentsList;
+    public int getRegisteredStudentsListAmount(){
+        return this.registeredStudentsList.size();
     }
 
 
@@ -45,9 +40,6 @@ public class Subject {
        this.registeredStudentsList.add(student);
     }
 
-    public Teacher getSubjectTeacher() {
-        return subjectTeacher;
-    }
 
     public boolean isARegisteredSubject(int subjectID){
         boolean isRegisteredSubject = false;
@@ -57,16 +49,16 @@ public class Subject {
         return isRegisteredSubject;
     }
 
-    public String getDetailedInformation(){
+    public String getInformationOfSubject(){
         return
                 "************* Subject Information ************ " +
-                        "\n- ID: " + id +
-                        "\n- SubjectName: " + subjectName +
-                        "\n- Classroom: " + classroom + "\n- Teacher: " + subjectTeacher.getName() +
-                        "\n- Registered Students: " + registeredStudentsList;
+                        "\n- ID: " + this.id +
+                        "\n- SubjectName: " + this.subjectName +
+                        "\n- Classroom: " + this.classroom + "\n- Teacher: " + this.subjectTeacher.getName() +
+                        "\n*** These are the students enrolled ***";
     }
 
     @Override
-    public String toString() {return String.format("|%20d|%20s|%20s|",id,subjectName,classroom);}
+    public String toString() {return String.format("|%20d|%30s|%20s|",id,subjectName,classroom);}
     }
 

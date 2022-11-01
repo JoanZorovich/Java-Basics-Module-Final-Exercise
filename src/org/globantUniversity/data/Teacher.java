@@ -21,33 +21,11 @@ public class Teacher {
     }
 
 
-    public int getIdentityCard() {
-        return identityCard;
-    }
 
     public String getName() {
         return name;
     }
 
-    public double getTotalSalary() {
-        return totalSalary;
-    }
-
-    public void setIdentityCard(int identityCard) {
-        this.identityCard = identityCard;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setTeacherSubjectsList(Subject subject) {
-        this.teacherSubjectsList.add(subject);
-    }
-
-    public void setTotalSalary(double totalSalary) {
-        this.totalSalary = totalSalary;
-    }
 
     public boolean isARegisteredTeacher(int identityCard){
         boolean isRegisteredTeacher = false;

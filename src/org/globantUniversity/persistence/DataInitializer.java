@@ -28,7 +28,7 @@ public class DataInitializer {
 
     }
     public static void loadTeachersIntoUniversity(University university){
-        Teacher teacher1 = new FullTimeTeacher(1010178020, "Felipe Jimenez", 3);
+        Teacher teacher1 = new FullTimeTeacher(1010178020, "Felipe Jimenez", 12);
         Teacher teacher2 = new PartTimeTeacher(1010178021, "Juan Castiblanco", 20);
         Teacher teacher3 = new FullTimeTeacher(1010178085, "Elvis Teck", 8);
         Teacher teacher4 = new PartTimeTeacher(1010178070, "Edna Krabappel", 48);
@@ -51,10 +51,10 @@ public class DataInitializer {
         Teacher teacher3= university.getTeacherById(2);
         Teacher teacher4= university.getTeacherById(3);
 
-        university.createSubject("math 1", 101122, teacher1,student1);
-        university.createSubject("math 2", 101122, teacher2,student2);
-        university.createSubject("math 3", 101122, teacher3,student3);
-        university.createSubject("math 4", 101122, teacher4,student4);
+        university.createSubject("Psychogenesis of laughter", 101122, teacher1);
+        university.createSubject("Molecular gastronomy", 101123, teacher2);
+        university.createSubject("Special math", 101124, teacher3);
+        university.createSubject("Innovation and technology", 101125, teacher4);
 
         Subject subject1 = university.getSubjectById(0);
         Subject subject2 = university.getSubjectById(1);

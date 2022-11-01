@@ -2,6 +2,9 @@ package org.globantUniversity.data;
 
 import java.util.ArrayList;
 
+/**
+ * create and consult information of a Student
+ */
 public class Student {
     private String name;
     private int age;
@@ -21,6 +24,13 @@ public class Student {
     public String getName() {
         return this.name;
     }
+
+    /**
+     * getStudentSubjectsListById and getStudentSubjectsListAmount allow all the subjects
+     * in which a student has registered to be displayed in an orderly manner
+     * @param index
+     * @return a Subject and int
+     */
     public Subject getStudentSubjectsListById(int index) {
         return this.studentSubjectsList.get(index);
     }
@@ -29,10 +39,20 @@ public class Student {
         return this.studentSubjectsList.size();
     }
 
+    /**
+     *This method receives a subject entered by console, enrolled by a specific
+     * student and stores it in an arrayList callled studentSubjectsList
+     * @param subject
+     */
     public void setStudentSubjectsList(Subject subject) {
         this.studentSubjectsList.add(subject);
     }
 
+    /**
+     *Validate if a Student has already been created
+     * @param identityCard input data from console
+     * @return true if the Student is registered, false if not
+     */
     public boolean isARegisteredStudent(int identityCard){
         boolean isRegisteredStudent = false;
         if(this.identityCard == identityCard){
@@ -41,9 +61,13 @@ public class Student {
         return isRegisteredStudent;
     }
 
+    /**
+     *Helps display information in an orderly and clear way
+     * @return String with detailed information on a student
+     */
     public String getInformationOfStudent(){
         return
-                "************* Subject Information ************ " +
+                "************* Student Information ************ " +
                         "\n- ID: " + this.identityCard +
                         "\n- Name: " + this.name +
                         "\n- Age: " + this.age +

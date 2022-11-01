@@ -108,7 +108,6 @@ public class University {
 
 
 
-
      public Subject getStudentSubjectsById(Student student, int index){
           return student.getStudentSubjectsListById(index);
      }

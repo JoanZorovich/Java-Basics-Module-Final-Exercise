@@ -7,7 +7,8 @@ public class Student {
     private int age;
     private int identityCard;
     private ArrayList<Subject> studentSubjectsList;
-    static int counter = 1;
+
+
     public Student(){};
 
     public Student(String name, int age, int identityCard) {
